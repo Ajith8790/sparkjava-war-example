@@ -1,13 +1,13 @@
 pipeline {    
     agent any    
     tools {   
-        maven 'maven-3.8'   
+        maven 'maven'   
     }   
         stages {    
             stage("git_checkout") {    
                 steps {    
                     echo "cloning repository"   
-                    git branch: 'J2EE', url: ' https://github.com/Ajith87907/onlinebookstore.git '    
+                    git branch: 'J2EE', url: ' https://github.com/Ajith8790/sparkjava-war-example.git'    
                     echo "repo cloned successfully"    
                     }    
                 }    
@@ -15,18 +15,18 @@ pipeline {
                 steps {    
                     sh 'mvn clean package'    
                     // rename package name   
-                    sh 'mv **/*.war target/bookstore.war'   
+                    sh 'mv **/*.war target/hello.war'   
                 }    
             }    
             stage("deploy") {   
                 steps {   
                     // under here mention your credentials of tomcat server    
-                    sshagent(['tomcat8'])  
+                    sshagent(['tomcatid1'])  
                         {   
                             sh """    
-                            scp -o StrictHostKeyChecking=no target/bookstore.war ec2-user@3.85.201.201:/opt/tomcat8/webapps/   
-                            ssh ec2-user@3.85.201.201 /opt/tomcat8/bin/shutdown.sh   
-                            ssh ec2-user@3.85.201.201 /opt/tomcat8/bin/startup.sh   
+                            scp -o StrictHostKeyChecking=no target/hello.war ubuntu@172.31.18.93:/opt/apache-tomcat-8.5.78/webapps/   
+                            ssh ubuntu@172.31.18.93 /opt/apache-tomcat-8.5.78/bin/shutdown.sh   
+                            ssh ubuntu@172.31.18.93 /opt/apache-tomcat-8.5.78/bin/startup.sh   
                             """   
                         }   
                 }   
