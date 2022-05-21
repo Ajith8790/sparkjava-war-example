@@ -21,7 +21,7 @@ pipeline {
             stage("deploy") {   
                 steps {   
                     // under here mention your credentials of tomcat server    
-                    sshagent(['tomcatid1'])  
+                    sshagent(['tomcat1'])  
                         {   
                             sh """    
                             scp -o StrictHostKeyChecking=no target/hello.war ubuntu@18.212.227.221:/opt/apache-tomcat-8.5.78/webapps/   
