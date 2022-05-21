@@ -7,7 +7,7 @@ pipeline {
             stage("git_checkout") {    
                 steps {    
                     echo "cloning repository"   
-                    git branch: 'J2EE', url: ' https://github.com/Ajith8790/sparkjava-war-example.git'    
+                    git branch: 'master', url: ' https://github.com/Ajith8790/sparkjava-war-example.git'    
                     echo "repo cloned successfully"    
                     }    
                 }    
